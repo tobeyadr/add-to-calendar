@@ -235,7 +235,7 @@ class Add_To_Google_Calendar {
 			return $event['link'];
 		}
 
-		return sprintf( "<a class='add-to-calendar' href='%s' target='_blank'>%s</a>", $event['link'], $event['text'] );
+		return sprintf( "<a class=\"add-to-calendar\" href=\"%s\" target=\"_blank\">%s</a>", esc_url( $event['link'] ), $event['text'] );
 	}
 
 	/**
