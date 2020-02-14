@@ -1,32 +1,12 @@
 <?php
 
-/*
-Plugin Name: Add To Google Calendar Link Generator
-Plugin URI: http://www.groundhogg.io
-Description: Generate a link which will allows users to add events to their Google Calendar
-Version: 1.0
-Author: Adrian Tobey
-Author URI: httsz://www.groundhogg.io
-License: A "Slug" license name e.g. GPL2
-*/
-
-define( 'ADD_TO_CALENDAR_VERSION', '1.0.0' );
-define( 'ADD_TO_CALENDAR_PREVIOUS_STABLE_VERSION', '0.0.0' );
-
-define( 'ADD_TO_CALENDAR__FILE__', __FILE__ );
-define( 'ADD_TO_CALENDAR_PLUGIN_BASE', plugin_basename( ADD_TO_CALENDAR__FILE__ ) );
-define( 'ADD_TO_CALENDAR_PATH', plugin_dir_path( ADD_TO_CALENDAR__FILE__ ) );
-
-define( 'ADD_TO_CALENDAR_URL', plugins_url( '/', ADD_TO_CALENDAR__FILE__ ) );
-
-define( 'ADD_TO_CALENDAR_ASSETS_PATH', ADD_TO_CALENDAR_PATH . 'assets/' );
-define( 'ADD_TO_CALENDAR_ASSETS_URL', ADD_TO_CALENDAR_URL . 'assets/' );
+namespace GroundhoggAddToCalendar;
 
 
 /**
- * Class Add_To_Google_Calendar
+ * Class Add_To_Calendar
  */
-class Add_To_Google_Calendar {
+class Add_To_Calendar {
 
 	public static $DATEFORMAT = 'Ymd\THis\Z';
 
@@ -36,7 +16,6 @@ class Add_To_Google_Calendar {
 	public function __construct() {
 		add_shortcode( 'add_to_cal', [ $this, 'shortcode' ] );
 		add_action( 'admin_menu', [ $this, 'register_admin_page' ] );
-		add_action( 'admin_enqueue_scripts', [ $this, 'register_scripts' ] );
 		add_action( 'wp_ajax_generate_add_to_calendar', [ $this, 'ajax_handler' ] );
 	}
 
@@ -115,9 +94,9 @@ class Add_To_Google_Calendar {
 	 */
 	public function ajax_handler() {
 
-        if ( ! wp_verify_nonce( $this->get_post_param( '_wpnonce' ) ) || ! current_user_can( 'edit_posts' ) ){
-            return;
-        }
+		if ( ! wp_verify_nonce( $this->get_post_param( '_wpnonce' ) ) || ! current_user_can( 'edit_posts' ) ) {
+			return;
+		}
 
 		$args = [
 			'start'    => $this->get_correct_time( 'start' ),
@@ -239,14 +218,6 @@ class Add_To_Google_Calendar {
 	}
 
 	/**
-	 * Register the admins scripts
-	 */
-	public function register_scripts() {
-		wp_register_style( 'add-to-cal', ADD_TO_CALENDAR_ASSETS_URL . 'style.css', [] );
-		wp_register_script( 'add-to-cal', ADD_TO_CALENDAR_ASSETS_URL . 'generate.js', [ 'jquery' ] );
-	}
-
-	/**
 	 * Register the admin page
 	 */
 	public function register_admin_page() {
@@ -264,8 +235,8 @@ class Add_To_Google_Calendar {
 	 * Render the page
 	 */
 	public function page() {
-		wp_enqueue_style( 'add-to-cal' );
-		wp_enqueue_script( 'add-to-cal' );
+		wp_enqueue_style( 'groundhogg-add-to-cal' );
+		wp_enqueue_script( 'groundhogg-add-to-cal' );
 
 		?>
         <div class="wrap">
@@ -280,5 +251,3 @@ class Add_To_Google_Calendar {
 		<?php
 	}
 }
-
-new Add_To_Google_Calendar();
