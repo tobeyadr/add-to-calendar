@@ -46,6 +46,11 @@
 				<textarea class="code regular-text" id="link" onfocus="this.select()" readonly></textarea>
 				<p class="description"><?php _e( 'The raw link to use on other sites or in emails.', 'add-to-cal' ); ?></p>
 			</div>
+            <div class="row">
+                <p class="label"><?php _e( 'HTML Link', 'add-to-cal' ); ?></p>
+                <textarea class="code regular-text" id="html" onfocus="this.select()" readonly></textarea>
+                <p class="description"><?php _e( 'The html code to use on other sites or in emails.', 'add-to-cal' ); ?></p>
+            </div>
 			<div class="row">
 				<p class="label"><?php _e( 'Shortcode', 'add-to-cal' ); ?></p>
 				<textarea class="code  regular-text" id="shortcode" onfocus="this.select()" readonly></textarea>

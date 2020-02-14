@@ -128,13 +128,12 @@ class Add_To_Google_Calendar {
 			'text'     => sanitize_text_field( $this->get_post_param( 'text' ) ),
 		];
 
-//		wp_send_json_success( $args );
-
 		$link      = $this->render_link( $args );
 		$shortcode = $this->render_shortcode( $args );
 
 		wp_send_json_success( [
 			'link'      => esc_url( $link ),
+			'html'      => esc_html( do_shortcode( $shortcode ) ),
 			'shortcode' => esc_html( $shortcode ),
 		] );
 	}
@@ -236,7 +235,7 @@ class Add_To_Google_Calendar {
 			return $event['link'];
 		}
 
-		return sprintf( "<a href='%s' target='_blank'>%s</a>", $event['link'], $event['text'] );
+		return sprintf( "<a class='add-to-calendar' href='%s' target='_blank'>%s</a>", $event['link'], $event['text'] );
 	}
 
 	/**

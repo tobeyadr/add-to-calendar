@@ -51,6 +51,7 @@
 
                 $( '#shortcode' ).html( response.data.shortcode );
                 $( '#link' ).html( response.data.link );
+                $( '#html' ).html( response.data.html );
 
             }
         });
