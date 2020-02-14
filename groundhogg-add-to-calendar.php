@@ -3,7 +3,7 @@
  * Plugin Name: Groundhogg - Add To Calendar
  * Plugin URI:  https://www.groundhogg.io/downloads/add-to-calendar?utm_source=wp-plugins&utm_campaign=plugin-uri&utm_medium=wp-dash
  * Description: A Simple utility to generate Google add to calendar links.
- * Version: 2.0
+ * Version: 1.0
  * Author: Groundhogg Inc.
  * Author URI: https://www.groundhogg.io/?utm_source=wp-plugins&utm_campaign=author-uri&utm_medium=wp-dash
  * Text Domain: groundhogg
